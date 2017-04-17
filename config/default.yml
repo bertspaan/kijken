@@ -1,0 +1,8 @@
+publicPath: /kijken/
+
+s3:
+  baseUrl: http://s3.bertspaan.nl.s3.amazonaws.com/photos/
+  filename: photos.json
+
+cssVariables:
+  headerHeight: 30px
