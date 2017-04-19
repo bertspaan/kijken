@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { push } from 'react-router-redux'
+import { findDOMNode } from 'react-dom'
 
 import { createSelector } from 'reselect'
 
@@ -13,9 +14,16 @@ import {
 
 import Download from 'components/Download'
 
-import { PhotoContainer, StyledPhoto } from './styles'
+import loading from 'images/loading.gif'
+
+import { Loading, PhotoContainer, StyledPhoto } from './styles'
 
 export class Photo extends React.Component {
+
+  setLoading () {
+    const node = findDOMNode(this.refs.photo)
+    node.src = ''
+  }
 
   getPreviousPhoto (photo) {
     const currentPhoto = this.props.photoMap[photo]
@@ -37,6 +45,8 @@ export class Photo extends React.Component {
       return
     }
 
+    this.setLoading()
+
     const year = this.props.params.year
     const name = this.props.params.name
     const hash = this.props.params.hash
@@ -48,6 +58,8 @@ export class Photo extends React.Component {
     if (!nextPhoto) {
       return
     }
+
+    this.setLoading()
 
     const year = this.props.params.year
     const name = this.props.params.name
@@ -95,8 +107,9 @@ export class Photo extends React.Component {
 
     return (
       <PhotoContainer>
+        <Loading src={loading} />
         <StyledPhoto hidden src={previousPhotoUrl} />
-        <StyledPhoto src={photoUrl} />
+        <StyledPhoto ref='photo' src={photoUrl} />
         <StyledPhoto hidden src={nextPhotoUrl} />
         <Download year={year} name={name} hash={hash} photo={photo} sizes={this.props.sizes} />
       </PhotoContainer>
