@@ -32,9 +32,11 @@ export function getSize (sizes) {
   return size
 }
 
-export function getPhotoUrl (year, name, hash, size, filename) {
+export function getPhotoUrl (year, name, hash, photo, size) {
   const baseUrl = __CONFIG__.s3.baseUrl
-  const url = `${baseUrl}${year}/${name}/${hash}/sizes/${size.join('x')}/${filename}`
-  return url
+  if (size) {
+    return `${baseUrl}${year}/${name}/${hash}/sizes/${size.join('x')}/${photo}`
+  } else {
+    return `${baseUrl}${year}/${name}/${hash}/${photo}`
+  }
 }
-

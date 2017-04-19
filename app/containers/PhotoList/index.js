@@ -34,7 +34,7 @@ export class PhotoList extends React.Component {
         {this.props.photoList.map((photo, index) => (
           <StyledPhoto key={index}>
             <Link to={`${year}/${name}/${hash}/${photo}`}>
-              <img src={getPhotoUrl(year, name, hash, smallestSize, photo)} />
+              <img src={getPhotoUrl(year, name, hash, photo, smallestSize)} />
             </Link>
           </StyledPhoto>
         ))}

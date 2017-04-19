@@ -11,6 +11,8 @@ import {
   selectPhotoMap
 } from 'containers/App/selectors'
 
+import Download from 'components/Download'
+
 import { PhotoContainer, StyledPhoto } from './styles'
 
 export class Photo extends React.Component {
@@ -79,23 +81,24 @@ export class Photo extends React.Component {
     const year = this.props.params.year
     const name = this.props.params.name
     const hash = this.props.params.hash
+    const photo = this.props.params.photo
 
     const size = getSize(this.props.sizes)
 
-    const photo = this.props.params.photo
-    const photoUrl = getPhotoUrl(year, name, hash, size, photo)
+    const photoUrl = getPhotoUrl(year, name, hash, photo, size)
 
-    const previousPhoto = this.getPreviousPhoto(this.props.params.photo)
-    const previousPhotoUrl = previousPhoto && getPhotoUrl(year, name, hash, size, previousPhoto)
+    const previousPhoto = this.getPreviousPhoto(photo)
+    const previousPhotoUrl = previousPhoto && getPhotoUrl(year, name, hash, previousPhoto, size)
 
     const nextPhoto = this.getNextPhoto(this.props.params.photo)
-    const nextPhotoUrl = nextPhoto && getPhotoUrl(year, name, hash, size, nextPhoto)
+    const nextPhotoUrl = nextPhoto && getPhotoUrl(year, name, hash, nextPhoto, size)
 
     return (
       <PhotoContainer>
         <StyledPhoto hidden src={previousPhotoUrl} />
         <StyledPhoto src={photoUrl} />
         <StyledPhoto hidden src={nextPhotoUrl} />
+        <Download year={year} name={name} hash={hash} photo={photo} sizes={this.props.sizes} />
       </PhotoContainer>
     )
   }
