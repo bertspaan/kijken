@@ -9,6 +9,8 @@ export const Container = styled.header`
   border-radius: 5px;
   background-color: rgba(0, 0, 0, 0.2);
 
+  z-index: 1000;
+
   display: flex;
 
   & a, & a:visited {
