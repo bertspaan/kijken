@@ -14,8 +14,6 @@ import {
 
 import Download from 'components/Download'
 
-import loading from 'images/loading.gif'
-
 import { Loading, PhotoContainer, StyledPhoto } from './styles'
 
 export class Photo extends React.Component {
@@ -107,7 +105,7 @@ export class Photo extends React.Component {
 
     return (
       <PhotoContainer>
-        <Loading src={loading} />
+        <Loading />
         <StyledPhoto hidden src={previousPhotoUrl} />
         <StyledPhoto ref='photo' src={photoUrl} />
         <StyledPhoto hidden src={nextPhotoUrl} />

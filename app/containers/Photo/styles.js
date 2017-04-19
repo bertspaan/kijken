@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import loading from 'images/loading.gif'
+
 export const PhotoContainer = styled.div`
   width 100%;
   height: 100%;
@@ -17,7 +19,17 @@ export const StyledPhoto = styled.img`
   display: ${props => props.hidden ? 'none' : 'inherit'};
 `
 
-export const Loading = styled.img`
+export const Loading = styled.div`
   position: absolute;
-  width: 200px;
+  box-sizing: border-box;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background-image: url(${loading});
+  background-position: center center;
+  background-repeat: no-repear;
 `
